@@ -30,3 +30,28 @@ Configuring Backend
 
 - **Day 4**  
 Setting up schema and routes
+## Installation
+
+To run Eventify locally, follow these steps:
+
+    Clone the repository: git clone https://github.com/kalviumcommunity/S46_Melvin_Capstone_Eventify.git
+    Navigate to the project directory: cd client/Eventify
+    Install dependencies: npm install
+    Start the development server: npm run dev
+## Usage
+
+Once the development server is running, you can access Eventify in your web browser at http://localhost:5137. From there, you can explore events, register for events, and manage events if you are an organizer.
+
+## Support
+
+For help or questions regarding Eventify, please open an issue on the GitHub repository or reach out to the project maintainers via email at melvin.aspirant@gmail.com.
+## Contributing
+
+Eventify welcomes contributions from the community. If you're interested in contributing, please follow our contribution guidelines and submit a pull request.
+## Authors and Acknowledgment
+
+Eventify is developed and maintained by Melvin.
+
+## Project Status
+
+Development of Eventify is active and ongoing. We welcome feedback, contributions, and suggestions from the community to improve and enhance the platform.
