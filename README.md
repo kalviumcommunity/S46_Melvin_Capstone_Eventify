@@ -3,6 +3,7 @@
 ## Overview
 EVENTIFY is a comprehensive platform designed to streamline the process of discovering, managing, and attending student events and festivals across India. Built using the MERN (MongoDB, Express.js, React.js, Node.js) stack, this platform aims to connect students with a diverse range of cultural, technical, and management events while providing organizers with tools to efficiently manage and promote their events.
 
+
 ## Goals
 1. **Facilitating Event Discovery:** The platform aims to simplify the process of discovering and accessing a wide range of student events and festivals across India. By providing robust search and filtering options, users can easily find events based on their interests, location, and preferences.
 2. **Enhancing Event Management:** The project also focuses on empowering event organizers with tools to efficiently manage and promote their events. From event submission and registration management to communication with attendees, the platform aims to streamline the entire event management process, ultimately leading to more successful and engaging events.
@@ -55,3 +56,5 @@ Eventify is developed and maintained by Melvin.
 ## Project Status
 
 Development of Eventify is active and ongoing. We welcome feedback, contributions, and suggestions from the community to improve and enhance the platform.
+
+**Backend** -> https://eventify-iu4y.onrender.com
