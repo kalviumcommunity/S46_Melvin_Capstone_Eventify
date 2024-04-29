@@ -10,7 +10,7 @@ const eventSchema = new mongoose.Schema({
   endDate: { type: Date, required: true },
   organizerId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Organizer",
     required: true,
   },
   registeredUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
