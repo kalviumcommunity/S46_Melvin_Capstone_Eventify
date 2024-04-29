@@ -7,7 +7,7 @@ export const userChats = async (req, res) => {
     });
     res.status(200).json(chat);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({error: error.message});
   }
 };
 
@@ -18,6 +18,6 @@ export const findChat = async (req, res) => {
     });
     res.status(200).json(chat);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({error: error.message});
   }
 };

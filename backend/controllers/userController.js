@@ -1,5 +1,4 @@
-import User from '../models/userSchema.js';
-
+import User from "../models/userSchema.js";
 
 // Get user details
 export const getUserProfile = async (req, res) => {
@@ -7,7 +6,6 @@ export const getUserProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
     res.status(200).json(user);
   } catch (err) {
-    res.status(404).json({ error: 'User not found' });
+    res.status(404).json({ error: "User not found" });
   }
 };
-

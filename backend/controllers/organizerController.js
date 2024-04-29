@@ -17,6 +17,6 @@ export const getOrganizerEvents = async (req, res) => {
     const events = await Event.find({ organizerId: req.organizer._id });
     res.status(200).json(events);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(404).json({ error: err.message });
   }
 };
