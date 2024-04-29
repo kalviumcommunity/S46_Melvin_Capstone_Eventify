@@ -11,7 +11,7 @@ export const addMessage = async (req, res) => {
     const result = await message.save();
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -21,6 +21,6 @@ export const getMessages = async (req, res) => {
     const result = await MessageModel.find({ chatId });
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({ error: error.message });
   }
 };

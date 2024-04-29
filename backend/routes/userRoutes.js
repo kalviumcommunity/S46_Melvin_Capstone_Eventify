@@ -1,6 +1,6 @@
 import express from "express";
 import * as userController from "../controllers/userController.js";
-import rateLimit from "express-rate-limit";
+import { limiter } from "./ratelimit.js";
 
 const router = express.Router();
 const {
@@ -8,19 +8,13 @@ const {
   getUserProfile,
   deleteUser,
   registerForEvent,
-  bookmarkEvent
+  bookmarkEvent,
 } = userController;
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: "Too many requests from this IP, please try again later",
-});
-
-router.post("/register", createUser);
+router.post("/register", limiter, createUser);
 router.get("/profile", limiter, getUserProfile);
 router.delete("/profile", deleteUser);
-router.post("/events/:eventId/register", registerForEvent);
+router.post("/events/:eventId/register", limiter, registerForEvent);
 router.post("/events/:eventId/bookmark", bookmarkEvent);
 
 export default router;

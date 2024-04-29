@@ -1,12 +1,12 @@
-import Organizer from '../models/organizerSchema.js';
-import Event from '../models/eventSchema.js';
+import Organizer from "../models/organizerSchema.js";
+import Event from "../models/eventSchema.js";
 
 // Create a new organizer
 export const createOrganizer = async (req, res) => {
   try {
     const newOrganizer = new Organizer(req.body);
     await newOrganizer.save();
-    res.status(201).json({ message: 'Organizer created successfully' });
+    res.status(201).json({ message: "Organizer created successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -18,7 +18,7 @@ export const getOrganizerProfile = async (req, res) => {
     const organizer = await Organizer.findById(req.organizer._id);
     res.status(200).json(organizer);
   } catch (err) {
-    res.status(404).json({ error: 'Organizer not found' });
+    res.status(404).json({ error: "Organizer not found" });
   }
 };
 
@@ -26,7 +26,7 @@ export const getOrganizerProfile = async (req, res) => {
 export const deleteOrganizer = async (req, res) => {
   try {
     await Organizer.findByIdAndDelete(req.organizer._id);
-    res.status(200).json({ message: 'Organizer deleted successfully' });
+    res.status(200).json({ message: "Organizer deleted successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -37,7 +37,7 @@ export const createEvent = async (req, res) => {
   try {
     const newEvent = new Event({ ...req.body, organizerId: req.organizer._id });
     await newEvent.save();
-    res.status(201).json({ message: 'Event created successfully' });
+    res.status(201).json({ message: "Event created successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -62,11 +62,16 @@ export const deleteEvent = async (req, res) => {
     });
 
     if (!deletedEvent) {
-      return res.status(404).json({ error: 'Event not found or you are not authorized to delete this event' });
+      return res
+        .status(404)
+        .json({
+          error:
+            "Event not found or you are not authorized to delete this event",
+        });
     }
 
-    res.status(200).json({ message: 'Event deleted successfully' });
-    } catch (err) {
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (err) {
     res.status(400).json({ error: err.message });
   }
-}
+};
