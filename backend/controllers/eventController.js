@@ -1,5 +1,16 @@
 import Event from "../models/eventSchema.js";
 
+// Create a new event
+export const createEvent = async (req, res) => {
+  try {
+    const newEvent = new Event(req.body);
+    const savedEvent = await newEvent.save();
+    res.status(201).json(savedEvent);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Get all events
 export const getAllEvents = async (req, res) => {
   try {
@@ -26,3 +37,17 @@ export const getEventById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Delete an event by ID
+export const deleteEvent = async (req, res) => {
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(req.params.id);
+    if (!deletedEvent) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
