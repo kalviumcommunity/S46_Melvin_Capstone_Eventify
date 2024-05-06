@@ -22,6 +22,16 @@ export const getOrganizerProfile = async (req, res) => {
   }
 };
 
+// Update organizer profile
+export const updateOrganizerProfile = async (req, res) => {
+  try {
+    const updatedOrganizer = await Organizer.findByIdAndUpdate(req.organizer._id, req.body, { new: true });
+    res.status(200).json(updatedOrganizer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // Delete organizer account
 export const deleteOrganizer = async (req, res) => {
   try {
@@ -48,6 +58,25 @@ export const getOrganizerEvents = async (req, res) => {
   try {
     const events = await Event.find({ organizerId: req.organizer._id });
     res.status(200).json(events);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+// Update an event
+export const updateEvent = async (req, res) => {
+  try {
+    const updatedEvent = await Event.findOneAndUpdate(
+      { _id: req.params.eventId, organizerId: req.organizer._id },
+      req.body,
+      { new: true }
+    );
+
+    if (!updatedEvent) {
+      return res.status(404).json({ error: 'Event not found or you are not authorized to update this event' });
+    }
+
+    res.status(200).json(updatedEvent);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
