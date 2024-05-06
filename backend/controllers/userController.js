@@ -22,6 +22,16 @@ export const getUserProfile = async (req, res) => {
   }
 };
 
+// Update user profile
+export const updateUserProfile = async (req, res) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, { new: true });
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // Delete user account
 export const deleteUser = async (req, res) => {
   try {
