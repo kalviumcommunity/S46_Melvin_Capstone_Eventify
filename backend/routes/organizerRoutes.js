@@ -1,7 +1,8 @@
 import express from "express";
 const router = express.Router();
 import * as organizerController from "../controllers/organizerController.js";
-import { limiter } from "./ratelimit.js";
+import { limiter } from "../helpers/ratelimit.js";
+
 const {
   createOrganizer,
   getOrganizerProfile,
@@ -11,15 +12,17 @@ const {
   deleteEvent,
   updateEvent,
   updateOrganizerProfile,
+  getAllOrganizers
 } = organizerController;
 
+router.get("/", limiter, getAllOrganizers);
 router.post("/register", limiter, createOrganizer);
-router.delete("/profile", deleteOrganizer);
-router.get("/profile", getOrganizerProfile);
-router.put("/profile", updateOrganizerProfile);
-router.post("/events", createEvent);
-router.get("/events", getOrganizerEvents);
-router.put("/events/:eventId", updateEvent);
-router.delete("/events/:eventId", deleteEvent);
+router.delete("/profile/:organizerId", deleteOrganizer);
+router.get("/profile/:organizerId", getOrganizerProfile);
+router.put("/profile/:organizerId", updateOrganizerProfile);
+router.post("/events/:organizerId", createEvent);
+router.get("/events/:organizerId", getOrganizerEvents);
+router.put("/events/:eventId/:organizerId", updateEvent);
+router.delete("/events/:eventId/:organizerId", deleteEvent);
 
 export default router;

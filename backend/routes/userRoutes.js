@@ -1,6 +1,6 @@
 import express from "express";
 import * as userController from "../controllers/userController.js";
-import { limiter } from "./ratelimit.js";
+import { limiter } from "../helpers/ratelimit.js";
 
 const router = express.Router();
 const {
@@ -9,14 +9,16 @@ const {
   deleteUser,
   registerForEvent,
   bookmarkEvent,
-  updateUserProfile
+  updateUserProfile,
+  getAllUsers
 } = userController;
 
-router.post("/register", limiter, createUser);
-router.get("/profile", limiter, getUserProfile);
-router.put('/profile', updateUserProfile);
-router.delete("/profile", deleteUser);
-router.post("/events/:eventId/register", limiter, registerForEvent);
-router.post("/events/:eventId/bookmark", bookmarkEvent);
+router.get("/", limiter, getAllUsers);
+router.post("/register", limiter, createUser); 
+router.get("/profile/:userId", limiter, getUserProfile); 
+router.put('/profile/:userId', updateUserProfile);
+router.delete("/profile/:userId", deleteUser); 
+router.post("/:userId/events/:eventId/register", limiter, registerForEvent); 
+router.post("/:userId/events/:eventId/bookmark", limiter, bookmarkEvent); 
 
 export default router;

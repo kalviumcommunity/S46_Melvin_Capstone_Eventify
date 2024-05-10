@@ -4,6 +4,16 @@ import Event from "../models/eventSchema.js";
 // Create a new organizer
 export const createOrganizer = async (req, res) => {
   try {
+    const existingOrganizer = await Organizer.findOne({
+      name: req.body.name,
+    })
+    if (existingOrganizer) {
+      return res.status(400).json({ error: "Organizer already exists" });
+    }
+    const emailExists = await Organizer.findOne({ email: req.body.email });
+    if (emailExists) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
     const newOrganizer = new Organizer(req.body);
     await newOrganizer.save();
     res.status(201).json({ message: "Organizer created successfully" });
@@ -12,13 +22,26 @@ export const createOrganizer = async (req, res) => {
   }
 };
 
+// Get all organizers
+export const getAllOrganizers = async (req, res) => {
+  try {
+    const organizers = await Organizer.find();
+    res.status(200).json(organizers);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // Get organizer details
 export const getOrganizerProfile = async (req, res) => {
   try {
-    const organizer = await Organizer.findById(req.organizer._id);
+    const organizer = await Organizer.findById(req.params.organizerId);
+    if (!organizer) {
+      return res.status(404).json({ error: "Organizer not found" });
+    }
     res.status(200).json(organizer);
   } catch (err) {
-    res.status(404).json({ error: "Organizer not found" });
+    res.status(400).json({ error: err.message });
   }
 };
 
@@ -26,7 +49,7 @@ export const getOrganizerProfile = async (req, res) => {
 export const updateOrganizerProfile = async (req, res) => {
   try {
     const updatedOrganizer = await Organizer.findByIdAndUpdate(
-      req.organizer._id,
+      req.params.organizerId,
       req.body,
       { new: true }
     );
@@ -34,7 +57,6 @@ export const updateOrganizerProfile = async (req, res) => {
       return res.status(404).json({ error: "Organizer not found" });
     }
 
-    res.status(200).json(updatedOrganizer);
     res.status(200).json(updatedOrganizer);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -44,7 +66,7 @@ export const updateOrganizerProfile = async (req, res) => {
 // Delete organizer account
 export const deleteOrganizer = async (req, res) => {
   try {
-    await Organizer.findByIdAndDelete(req.organizer._id);
+    await Organizer.findByIdAndDelete(req.params.organizerId);
     res.status(200).json({ message: "Organizer deleted successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -54,7 +76,10 @@ export const deleteOrganizer = async (req, res) => {
 // Create a new event
 export const createEvent = async (req, res) => {
   try {
-    const newEvent = new Event({ ...req.body, organizerId: req.organizer._id });
+    const newEvent = new Event({
+      ...req.body,
+      organizerId: req.params.organizerId,
+    });
     await newEvent.save();
     res.status(201).json({ message: "Event created successfully" });
   } catch (err) {
@@ -65,7 +90,7 @@ export const createEvent = async (req, res) => {
 // Get all events by organizer
 export const getOrganizerEvents = async (req, res) => {
   try {
-    const events = await Event.find({ organizerId: req.organizer._id });
+    const events = await Event.find({ organizerId: req.params.organizerId });
     res.status(200).json(events);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -76,20 +101,15 @@ export const getOrganizerEvents = async (req, res) => {
 export const updateEvent = async (req, res) => {
   try {
     const updatedEvent = await Event.findOneAndUpdate(
-      { _id: req.params.eventId, organizerId: req.organizer._id },
+      { _id: req.params.eventId, organizerId: req.params.organizerId },
       req.body,
       { new: true }
     );
-
     if (!updatedEvent) {
-      return res
-        .status(404)
-        .json({
-          error:
-            "Event not found or you are not authorized to update this event",
-        });
+      return res.status(404).json({
+        error: "Event not found or you are not authorized to update this event",
+      });
     }
-
     res.status(200).json(updatedEvent);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -101,15 +121,13 @@ export const deleteEvent = async (req, res) => {
   try {
     const deletedEvent = await Event.findOneAndDelete({
       _id: req.params.eventId,
-      organizerId: req.organizer._id,
+      organizerId: req.params.organizerId,
     });
-
     if (!deletedEvent) {
       return res.status(404).json({
         error: "Event not found or you are not authorized to delete this event",
       });
     }
-
     res.status(200).json({ message: "Event deleted successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });

@@ -1,10 +1,13 @@
 import express from "express";
 import { json } from "express";
 
+//db
+import { connectToDB, isConnected } from "./db.js";
+
 //routes
 import eventRoutes from "./routes/eventRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";  
 import messageRoutes from "./routes/messageRoutes.js";
 import organizerRoutes from "./routes/organizerRoutes.js";
 
@@ -17,10 +20,12 @@ app.use(json());
 app.get("/status", (req, res) => {
   res.json({
     message: "Works fine...",
+    database: isConnected() ? "Connected" : "Disconnected",
   });
 });
 
 app.listen(port, async () => {
+  await connectToDB();
   console.log(`Eventify listening on port ${port}`);
 });
 

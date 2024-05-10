@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Organizer",
     required: true,
-  },
+  },  
   registeredUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   image: { type: String, required: true },
   website: { type: String },
