@@ -1,12 +1,13 @@
 import Organizer from "../models/organizerSchema.js";
 import Event from "../models/eventSchema.js";
+import bcrypt from "bcrypt";
 
 // Create a new organizer
 export const createOrganizer = async (req, res) => {
   try {
     const existingOrganizer = await Organizer.findOne({
       name: req.body.name,
-    })
+    });
     if (existingOrganizer) {
       return res.status(400).json({ error: "Organizer already exists" });
     }
@@ -14,7 +15,13 @@ export const createOrganizer = async (req, res) => {
     if (emailExists) {
       return res.status(400).json({ error: "Email already exists" });
     }
-    const newOrganizer = new Organizer(req.body);
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 11);
+
+    const newOrganizer = new Organizer({
+      ...req.body,
+      password: hashedPassword,
+    });
     await newOrganizer.save();
     res.status(201).json({ message: "Organizer created successfully" });
   } catch (err) {
