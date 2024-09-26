@@ -58,3 +58,4 @@ Eventify is developed and maintained by Melvin.
 Development of Eventify is active and ongoing. We welcome feedback, contributions, and suggestions from the community to improve and enhance the platform.
 
 **Backend** -> https://eventify-iu4y.onrender.com
+**Frontend** -> https://eventify-capstone.netlify.app/
