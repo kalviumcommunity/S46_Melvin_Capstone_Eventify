@@ -1,0 +1,34 @@
+meta {
+  name: Create event
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://eventify-iu4y.onrender.com/api/organizers/events/66faa3498c16f0871c0155d9
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "Tech Conference 2024",
+    "description": "The leading technology conference in the region, covering the latest trends and innovations.",
+    "category": "Technology",
+    "location": "San Francisco, CA",
+    "price": 499.99,
+    "startDate": "2024-06-01T09:00:00.000Z",
+    "endDate": "2024-06-03T18:00:00.000Z",
+    "organizerId": "6430e8f2d9e7b3a5c6f2b789",
+    "registeredUsers": [
+      "662b8732016bc37ef03ef96b",
+      "662b89e2016bc37ef03ef97d"
+    ],
+    "image": "https://example.com/tech-conference-2024.jpg",
+    "website": "https://techconference2024.com",
+    "socialMediaLinks": [
+      "https://twitter.com/techconf2024",
+      "https://facebook.com/techconf2024"
+    ]
+  }
+}
