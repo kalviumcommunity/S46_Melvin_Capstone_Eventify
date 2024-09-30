@@ -34,7 +34,7 @@ function ImageUpload({handleCompletion,handlePopup,userId}) {
     }
 
   return (
-    <div className="bg-white absolute w-1/3 top-[45%] right-[35%] z-10 bg-black p-5 rounded-md">
+    <div className="absolute w-1/3 top-[45%] right-[35%] z-10 bg-black p-5 rounded-md">
       <div onClick={handlePopup} className="text-right text-xl cursor-pointer">X</div>
         {loading ? 
         <div className="flex flex-col justify-center items-center h-[20dvh]">
