@@ -7,6 +7,8 @@ import OrganizerSignup from "../Pages/OrgSignup.jsx";
 import OrganizerLogin from "../Pages/OrgLogin.jsx";
 import Home from "../Pages/Home.jsx";
 import Profile from "../Pages/Profile.jsx";
+import DetailedEventPage from "../Pages/DetailedEventPage.jsx";
+import CampusEventsPlatform from "../Pages/Home.jsx";
 
 function Routing() {
   return (
@@ -16,9 +18,10 @@ function Routing() {
       <Route path="/login" element={<Login />}></Route>
       <Route path="/organizer/signup" element={<OrganizerSignup/>}></Route>
       <Route path="/organizer/login" element={<OrganizerLogin/>}></Route>
-      <Route path="/home" element={<Home/>}></Route>
       <Route path="/profile" element={<Profile/>}></Route>
-    </Routes>
+      <Route path="/home" element={<CampusEventsPlatform />}></Route>
+      <Route path="/event-details" element={<DetailedEventPage />}></Route>
+  </Routes>
   );
 }
 
