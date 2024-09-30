@@ -1,0 +1,19 @@
+meta {
+  name: get chats
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://eventify-iu4y.onrender.com/api/messages/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "chatId": "662b9870016bc37ef03ef994",
+    "senderId": "662b89e2016bc37ef03ef974d",
+    "text": "Hello, how are you?"
+  }
+}

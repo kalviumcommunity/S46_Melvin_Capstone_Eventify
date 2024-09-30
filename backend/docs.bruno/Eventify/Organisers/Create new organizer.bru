@@ -1,0 +1,20 @@
+meta {
+  name: Create new organizer
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://eventify-iu4y.onrender.com/api/organizers/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Melvxins Kannan",
+    "college": "Kalxviums",
+    "email": "organxizer@examplle.com",
+    "password": "organizer_password"
+  }
+}

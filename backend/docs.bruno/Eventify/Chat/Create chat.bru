@@ -1,0 +1,20 @@
+meta {
+  name: Create chat
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://eventify-iu4y.onrender.com/api/chat
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "members": [
+      "662b89e2016bc37ef03ef97d",
+      "6430e8f2d9e7b3a5c6f2b789"
+    ]
+  }
+}

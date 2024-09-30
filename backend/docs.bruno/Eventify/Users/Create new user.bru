@@ -1,0 +1,31 @@
+meta {
+  name: Create new user
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://eventify-iu4y.onrender.com/api/users/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+          "name": "SUI",
+          "email": "SUI.doe@example.com",
+          "password": "mySecurePassword123",
+          "interests": [
+              "Sports",
+              "Reading"
+          ],
+          "registeredEvents": [
+              "662b88b8016bc37ef03ef96d",
+              "662b891f016bc37ef03ef972"
+          ],
+          "bookmarks": [
+              "662b891f016bc37ef03ef972",
+              "662b88b8016bc37ef03ef96d"
+          ]
+      }
+}
