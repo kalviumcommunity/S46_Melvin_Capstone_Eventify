@@ -29,6 +29,7 @@ export const userSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
+  confirmPassword: Joi.ref("password"),
   interests: Joi.array().items(Joi.string()),
   registeredEvents: Joi.array().items(Joi.string()),
   bookmarks: Joi.array().items(Joi.string()),
@@ -38,6 +39,12 @@ export const organizerSchema = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().email().required(),
   password: Joi.string().required(),
+  confirmPassword: Joi.ref("password"),
   college: Joi.string().required(),
   events: Joi.array().items(Joi.string()),
+});
+
+export const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
 });

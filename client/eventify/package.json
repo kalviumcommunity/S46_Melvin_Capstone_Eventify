@@ -10,14 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.0.2",
     "@tabler/icons-react": "^3.4.0",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.4",
     "react-router-dom": "^6.23.1",
+    "react-toastify": "^10.0.5",
     "simplex-noise": "^4.0.1",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-filters": "^3.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

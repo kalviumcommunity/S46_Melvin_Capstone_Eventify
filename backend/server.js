@@ -1,5 +1,6 @@
 import express from "express";
 import { json } from "express";
+import cors from "cors";
 
 //db
 import { connectToDB, isConnected } from "./db.js";
@@ -16,6 +17,7 @@ const port = 3000;
 
 //middlewares
 app.use(json());
+app.use(cors());
 
 app.get("/status", (req, res) => {
   res.json({
