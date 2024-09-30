@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -44,14 +45,11 @@ function Navbar() {
             </svg>
           </span>
         </a>
-
-        <a
-          href="/signin"
-          target="_self"
-          className="text-[#cacaca] hover:text-white rounded-full text-sm px-5 py-2.5 bg-gray-800 bg-opacity-30 hover:bg-opacity-80 hover:bg-gray-900"
-        >
-          Sign In
-        </a>
+        <Link to="/signup">
+          <button className="text-[#cacaca] hover:text-white rounded-full text-sm px-5 py-2.5 bg-gray-800 bg-opacity-30 hover:bg-opacity-80 hover:bg-gray-900">
+            Sign In
+          </button>
+        </Link>
       </div>
     </nav>
   );
