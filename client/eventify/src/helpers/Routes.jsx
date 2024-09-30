@@ -6,6 +6,7 @@ import Login from "../Pages/Login.jsx";
 import OrganizerSignup from "../Pages/OrgSignup.jsx";
 import OrganizerLogin from "../Pages/OrgLogin.jsx";
 import Home from "../Pages/Home.jsx";
+import Profile from "../Pages/Profile.jsx";
 
 function Routing() {
   return (
@@ -16,6 +17,7 @@ function Routing() {
       <Route path="/organizer/signup" element={<OrganizerSignup/>}></Route>
       <Route path="/organizer/login" element={<OrganizerLogin/>}></Route>
       <Route path="/home" element={<Home/>}></Route>
+      <Route path="/profile" element={<Profile/>}></Route>
     </Routes>
   );
 }
